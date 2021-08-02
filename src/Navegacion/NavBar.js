@@ -1,23 +1,23 @@
 import React from "react";
 import "../Navegacion/NavBar.css";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import Categorias from "./Categorias/Categorias";
+import CartWidget from "../Carrito/CartWidget";
 
 const NavBar = () => {
   return (
     <div>
       <Navbar
-        fixed="top"
+        sticky="top"
         bg="primary"
         variant="dark"
-        expand="lg"
+        expand="md"
         collapseOnSelect
       >
         <Container>
           <Navbar.Brand href="#home">Health First</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="me-auto navFont">
               <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="#link">Nosotros</Nav.Link>
               <NavDropdown title="Productos" id="basic-nav-dropdown">
@@ -29,7 +29,7 @@ const NavBar = () => {
                   Suplementos
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#actioan/3.3">
+                <NavDropdown.Item href="#action/3.3">
                   Vitaminas
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
@@ -38,7 +38,10 @@ const NavBar = () => {
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <Nav>{/* Carrito */}</Nav>
+            <Nav>
+              {/* Carrito */}
+              <CartWidget />
+            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
