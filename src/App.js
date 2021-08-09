@@ -16,9 +16,11 @@ class App extends React.Component {
         <Container fluid>
           <Row>
             <Col>
+              {/* barra de navegacion */}
               <NavBar />
             </Col>
           </Row>
+          {/* galeria de productos */}
           <Row>
             <Col>
               <ItemListContainer greeting="Suplementos" />
