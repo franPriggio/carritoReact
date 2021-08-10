@@ -1,6 +1,37 @@
+.itemClass {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.back {
+  background: #eaeaea;
+}
+
 .countersClass {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.counterBack {
+  border: 1px solid gray;
+  border-radius: 25px;
+  background: white;
+}
+
+.itemInput {
+  text-align: center;
+  border: none;
+}
+
+.itemCounter {
+  color: rgb(9, 110, 150);
+  margin: 5px;
+}
+
+.tituloItem {
+  padding-top: 10px;
 }

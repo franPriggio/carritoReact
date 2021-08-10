@@ -7,22 +7,21 @@ class ItemCount extends React.Component {
   //count management
   constructor(props) {
     super(props);
+
     this.state = {
       contador: this.props.initial,
       stock: this.props.stock,
     };
-    console.log("this.state.contador construct: " + this.state.contador);
-    console.log("this.state.stock construct: " + this.state.stock);
+
     this.addCounter = this.addCounter.bind(this);
     this.decreaseCounter = this.decreaseCounter.bind(this);
     this.updateCounter = this.updateCounter.bind(this);
     this.updStock = this.updStock.bind(this);
   }
 
+  //sumo 1 del stock
   addCounter() {
-    console.log("this.state.contador add : " + this.state.contador);
-    console.log("this.state.stock add : " + this.state.stock);
-    if (this.state.contador < this.state.stock) {
+    if (+this.state.contador < +this.state.stock) {
       this.setState((prevState) => ({
         ...prevState,
         contador: prevState.contador + 1,
@@ -30,8 +29,9 @@ class ItemCount extends React.Component {
     }
   }
 
+  //resto 1 del stock
   decreaseCounter() {
-    if (this.state.contador > 0 && this.state.stock > 0) {
+    if (+this.state.contador > 0 && +this.state.stock > 0) {
       this.setState((prevState) => ({
         ...prevState,
         contador: prevState.contador - 1,
@@ -39,14 +39,16 @@ class ItemCount extends React.Component {
     }
   }
 
+  //actualizo contador segun el input de usuario
   updateCounter(event) {
     event.preventDefault();
     this.setState((prevState) => ({
       ...prevState,
-      contador: event.target.value,
+      contador: +event.target.value,
     }));
   }
 
+  //resto del stock total al agregar al carrito
   updStock() {
     this.setState((prevState) => ({
       ...prevState,
@@ -54,32 +56,55 @@ class ItemCount extends React.Component {
     }));
   }
 
+  //si al restar del stock en updStock()
+  //el contador supera el sotck restante, actualizo el contador
+  //al mismo numero de stock
+  componentDidUpdate() {
+    if (this.state.contador > this.state.stock) {
+      this.setState((prevState) => ({
+        ...prevState,
+        contador: this.state.stock,
+      }));
+    }
+  }
+
   render() {
     return (
       <Container>
-        <Row>
-          <Col>Nombre item</Col>
-        </Row>
-        <Row className="countersClass mt-3 mb-3">
-          <Col md={4}></Col>
-          <Col md={4} className="countersClass">
-            <Button variant="outline-info" onClick={this.decreaseCounter}>
-              <Dash />
-            </Button>
+        <Row xs="auto" className="itemClass pt-3 pb-3">
+          <Col xs={3} className="pb-3 back tituloItem">
+            Suplemento Potasio
+          </Col>
+          <Col xs={3} className="countersClass back ">
+            {/* <Button variant="outline-info"> */}
+            <Dash onClick={this.decreaseCounter} class="itemCounter" />
+            {/* </Button> */}
             <input
+              class="itemInput counterBack"
               type="Number"
               value={this.state.contador}
               onChange={this.updateCounter}
             ></input>
-            <Button variant="outline-info" onClick={this.addCounter}>
-              <Plus />
-            </Button>
+            {/* <Button variant="outline-info" > */}
+            <Plus onClick={this.addCounter} class="itemCounter" />
+            {/* </Button> */}
           </Col>
-          <Col md={4}></Col>
+          <Col xs={3} className="pb-3 back"></Col>
         </Row>
-        <Row className="mt-3">
-          <Col>
-            <Button variant="primary" onClick={this.updStock}>
+        <Row className="countersClass">
+          <Col md={4}>
+            <Button
+              variant="outline-primary"
+              onClick={() => {
+                // podria llamar funcion local que actualice el stock
+                // y haga demas calculos, crear un objeto con informacion
+                // actualizada y devolverlo mediante this.props.onAdd(obj)
+                this.updStock();
+                if (this.state.contador > 0) {
+                  this.props.onAdd("Carrito Actualizado");
+                }
+              }}
+            >
               Agregar al Carrito
             </Button>
           </Col>
