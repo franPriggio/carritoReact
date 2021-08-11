@@ -23,7 +23,7 @@ class App extends React.Component {
           {/* galeria de productos */}
           <Row>
             <Col>
-              <ItemListContainer greeting="Suplementos" />
+              <ItemListContainer greeting="Personajes" />
             </Col>
           </Row>
         </Container>

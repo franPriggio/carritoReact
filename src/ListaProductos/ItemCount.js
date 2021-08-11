@@ -72,10 +72,8 @@ class ItemCount extends React.Component {
     return (
       <Container>
         <Row xs="auto" className="itemClass pt-3 pb-3">
-          <Col xs={3} className="pb-3 back tituloItem">
-            Suplemento Potasio
-          </Col>
-          <Col xs={3} className="countersClass back ">
+          <Col xs={12} className="pb-3 back tituloItem"></Col>
+          <Col xs={12} className="countersClass back ">
             {/* <Button variant="outline-info"> */}
             <Dash onClick={this.decreaseCounter} class="itemCounter" />
             {/* </Button> */}
@@ -89,10 +87,10 @@ class ItemCount extends React.Component {
             <Plus onClick={this.addCounter} class="itemCounter" />
             {/* </Button> */}
           </Col>
-          <Col xs={3} className="pb-3 back"></Col>
+          <Col xs={12} className="pb-3 back bottomCounter"></Col>
         </Row>
         <Row className="countersClass">
-          <Col md={4}>
+          <Col xs={12}>
             <Button
               variant="outline-primary"
               onClick={() => {
@@ -101,7 +99,7 @@ class ItemCount extends React.Component {
                 // actualizada y devolverlo mediante this.props.onAdd(obj)
                 this.updStock();
                 if (this.state.contador > 0) {
-                  this.props.onAdd("Carrito Actualizado");
+                  this.props.onAdd(`Se agregaron ${this.state.contador}`);
                 }
               }}
             >
