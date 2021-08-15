@@ -90,7 +90,7 @@ class ItemCount extends React.Component {
           <Col xs={12} className="pb-3 back bottomCounter"></Col>
         </Row>
         <Row className="countersClass">
-          <Col xs={12}>
+          <Col xs={12} className="centerButton">
             <Button
               variant="outline-primary"
               onClick={() => {
