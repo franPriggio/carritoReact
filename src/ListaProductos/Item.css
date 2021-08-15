@@ -1,0 +1,14 @@
+.itemSpace {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #d8d7d7;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.prodStyle {
+  padding: 1rem;
+}
