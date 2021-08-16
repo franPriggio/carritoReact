@@ -11,7 +11,6 @@ const ItemListContainer = ({ greeting }) => {
     fetch(`${apiPath}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("data: " + JSON.stringify(data));
         let charactersInfo = data.results;
         let addNewData = charactersInfo.map((obj) => ({
           name: obj.name,
@@ -19,8 +18,8 @@ const ItemListContainer = ({ greeting }) => {
           id: obj.id,
           price: Number(obj.id) + 10,
         }));
+        console.log("addNewData: " + JSON.stringify(addNewData));
         setItems(addNewData);
-        console.log("data.results: " + JSON.stringify(data.results));
       });
   }, []);
 
