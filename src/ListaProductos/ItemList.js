@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./ItemList.css";
 import Item from "./Item";
 import { Container, Row, Col } from "react-bootstrap";
@@ -13,6 +13,7 @@ const ItemList = (props) => {
               <Col>
                 <Item
                   key={id}
+                  id={id}
                   title={name}
                   pictureUrl={image}
                   itemPrice={price}
