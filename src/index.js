@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
-import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom";
+import App from "./pages/App";
 
 ReactDOM.render(
   <React.StrictMode>

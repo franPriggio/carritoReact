@@ -75,7 +75,7 @@ class ItemCount extends React.Component {
           <Col xs={12} className="pb-3 back tituloItem"></Col>
           <Col xs={12} className="countersClass back ">
             {/* <Button variant="outline-info"> */}
-            <Dash onClick={this.decreaseCounter} class="itemCounter" />
+            <Dash onClick={this.decreaseCounter} className="itemCounter" />
             {/* </Button> */}
             <input
               class="itemInput counterBack"
@@ -84,7 +84,7 @@ class ItemCount extends React.Component {
               onChange={this.updateCounter}
             ></input>
             {/* <Button variant="outline-info" > */}
-            <Plus onClick={this.addCounter} class="itemCounter" />
+            <Plus onClick={this.addCounter} className="itemCounter" />
             {/* </Button> */}
           </Col>
           <Col xs={12} className="pb-3 back bottomCounter"></Col>

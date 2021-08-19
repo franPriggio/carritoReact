@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ItemDetail from "./ItemDetail";
 import { Modal, Button } from "react-bootstrap";
-
+import ItemDetail from "./ItemDetail";
 const apiPath = "https://rickandmortyapi.com/api/character/";
 
 const ItemDetailContainer = (props) => {
