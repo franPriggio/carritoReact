@@ -17,3 +17,5 @@ Luego para iniciar la aplicación debes abrir una terminal posicionado en la rut
 ## Demo
 
 En este link podras ver una rapida navegacion a través de las diferentes funcionalidades de la aplicación:
+
+https://www.loom.com/share/5e3d28bc5eaa4fec9cbcd2413f198e95
