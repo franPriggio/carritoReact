@@ -78,7 +78,7 @@ class ItemCount extends React.Component {
             <Dash onClick={this.decreaseCounter} className="itemCounter" />
             {/* </Button> */}
             <input
-              class="itemInput counterBack"
+              className="itemInput counterBack"
               type="Number"
               value={this.state.contador}
               onChange={this.updateCounter}

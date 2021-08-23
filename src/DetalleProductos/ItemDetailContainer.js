@@ -1,16 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
-const apiPath = "https://rickandmortyapi.com/api/character/";
+const basePath = "https://rickandmortyapi.com/api/character/";
 
 const ItemDetailContainer = (props) => {
   const [show, setShow] = useState(false);
   const [character, setCharacter] = useState({});
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const { charId } = useParams();
 
   const getItem = () => {
-    fetch(`${apiPath}${props.id}`)
+    let apiPath;
+    if (charId) {
+      apiPath = basePath + charId;
+    } else {
+      apiPath = `${basePath}1`;
+    }
+    fetchCharacter(apiPath);
+  };
+
+  const fetchCharacter = (apiPath) => {
+    fetch(`${apiPath}`)
       .then((response) => response.json())
       .then((data) => {
         let singleCharacterInfo = data;
@@ -21,6 +33,14 @@ const ItemDetailContainer = (props) => {
           price: Number(singleCharacterInfo.id) + 10,
         };
         setCharacter(addNewData);
+      })
+      .catch(() => {
+        setCharacter({
+          name: "Rick",
+          image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+          id: "1",
+          price: Number("1") + 10,
+        });
       });
   };
 
@@ -45,7 +65,13 @@ const ItemDetailContainer = (props) => {
   };
 
   useEffect(() => {
-    getItem();
+    if (charId) {
+      getItem();
+    } else {
+      if (props.id) {
+        fetchCharacter(basePath + props.id);
+      }
+    }
   }, []);
 
   useEffect(() => {

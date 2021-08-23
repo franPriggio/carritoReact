@@ -9,7 +9,7 @@ import About from "./about";
 import Contact from "./contact";
 import SignUp from "./signup";
 import SignIn from "./signin";
-import { BrowserRouter, Switch, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 const App = () => {
   // const { itemId } = useParams();
@@ -28,15 +28,14 @@ const App = () => {
                 <Route exact path="/">
                   <ItemListContainer greeting="Personajes" />
                 </Route>
-                <Route exact path="/category/:id">
+                <Route exact path="/category/:status">
                   <ItemListContainer greeting="Personajes" />
                 </Route>
-                <Route exact path="/item/:id">
-                  <ItemDetailContainer id={2} />
-                  {/* <ItemDetailContainer id={itemId} /> */}
+                <Route exact path="/item/:charId">
+                  <ItemDetailContainer />
                 </Route>
                 <Route path="/about" component={About} />
-                <Route path="/contact" component={Contact} />
+                <Route path="/contact/:contactId" component={Contact} />
                 <Route path="/signin" component={SignIn} />
                 <Route path="/sign-up" component={SignUp} />
                 <Route path="*" component={NotFound}></Route>
