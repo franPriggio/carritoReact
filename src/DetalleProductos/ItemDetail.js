@@ -5,8 +5,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const ItemDetail = (props) => {
-  const [showItemCount, setShowItemCount] = useState(1);
-  const [itemCountCounter, setitemCountCounter] = useState(true);
+  const [showItemCount, setShowItemCount] = useState(true);
+  const [itemCountCounter, setItemCountCounter] = useState(1);
 
   return (
     <div>
@@ -17,8 +17,8 @@ const ItemDetail = (props) => {
 
         {showItemCount && (
           <ItemCount
-            setShowItemCount={setShowItemCount}
-            setitemCountCounter={setitemCountCounter}
+            setShowCount={setShowItemCount}
+            setItemCounter={setItemCountCounter}
             maxStock={10}
             initial={1}
           />
