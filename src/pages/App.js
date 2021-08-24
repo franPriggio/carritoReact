@@ -9,6 +9,7 @@ import About from "./about";
 import Contact from "./contact";
 import SignUp from "./signup";
 import SignIn from "./signin";
+import Carrito from "../components/Carrito/carrito";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
                 <Route path="/contact/:contactId" component={Contact} />
                 <Route path="/signin" component={SignIn} />
                 <Route path="/sign-up" component={SignUp} />
+                <Route path="/cart" component={Carrito} />
                 <Route path="*" component={NotFound}></Route>
               </Switch>
             </Col>

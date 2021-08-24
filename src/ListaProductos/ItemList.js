@@ -10,7 +10,7 @@ const ItemList = (props) => {
         <Row>
           {props.items.map(({ id, image, name, price }) => {
             return (
-              <Col key={id}>
+              <Col xs={12} sm={6} md={3} key={id}>
                 <Item
                   key={id}
                   id={id}
