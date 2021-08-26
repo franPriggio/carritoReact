@@ -1,10 +1,8 @@
 import React, { useContext } from "react";
-import { CartContext } from "../../context/cartContext";
+import CartContext from "./CartContext";
 
 const Carrito = () => {
-  const cart = useContext(CartContext);
-
-  return <div></div>;
+  return <div>Carrito</div>;
 };
 
 export default Carrito;

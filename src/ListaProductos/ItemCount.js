@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./ItemCount.css";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Plus, Dash } from "react-bootstrap-icons";
+import { useAdd } from "../components/Carrito/CartContext";
 
 const ItemCount = ({ initial, maxStock, setItemCounter, setShowCount }) => {
   const [contador, setContador] = useState(initial);
@@ -34,9 +35,9 @@ const ItemCount = ({ initial, maxStock, setItemCounter, setShowCount }) => {
   const updStock = () => {
     console.log("ejecuta upd stock");
     // const newStock = stock - contador;
-    // setStock(newStock);
+    // setStock(newStock);s
     setItemCounter(contador);
-    setShowCount(true);
+    setShowCount(false);
   };
 
   return (

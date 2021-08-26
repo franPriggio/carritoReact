@@ -9,6 +9,7 @@ import About from "./about";
 import Contact from "./contact";
 import SignUp from "./signup";
 import SignIn from "./signin";
+import CartContext from "../components/Carrito/CartContext";
 import Carrito from "../components/Carrito/carrito";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
@@ -26,21 +27,23 @@ const App = () => {
           <Row>
             <Col>
               <Switch>
-                <Route exact path="/">
-                  <ItemListContainer greeting="Personajes" />
-                </Route>
-                <Route exact path="/category/:status">
-                  <ItemListContainer greeting="Personajes" />
-                </Route>
-                <Route exact path="/item/:charId">
-                  <ItemDetailContainer />
-                </Route>
-                <Route path="/about" component={About} />
-                <Route path="/contact/:contactId" component={Contact} />
-                <Route path="/signin" component={SignIn} />
-                <Route path="/sign-up" component={SignUp} />
-                <Route path="/cart" component={Carrito} />
-                <Route path="*" component={NotFound}></Route>
+                <CartContext>
+                  <Route exact path="/">
+                    <ItemListContainer />
+                  </Route>
+                  <Route exact path="/category/:status">
+                    <ItemListContainer />
+                  </Route>
+                  <Route exact path="/item/:charId">
+                    <ItemDetailContainer />
+                  </Route>
+                  <Route exact path="/about" component={About} />
+                  <Route exact path="/contact/:contactId" component={Contact} />
+                  <Route exact path="/signin" component={SignIn} />
+                  <Route exact path="/sign-up" component={SignUp} />
+                  <Route exact path="/cart" component={Carrito} />
+                  {/* <Route path="*" component={NotFound}></Route> */}
+                </CartContext>
               </Switch>
             </Col>
           </Row>

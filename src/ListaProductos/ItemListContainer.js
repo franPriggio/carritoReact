@@ -3,12 +3,32 @@ import "./ItemListContainer.css";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
 import { apiBaseUrl } from "../apis/apiDefinition";
+// import { getFirestore } from "../firebase";
 
 let basePath = `${apiBaseUrl}character`;
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = () => {
   const [items, setItems] = useState([]);
   const { status } = useParams();
+
+  ///////////// Firebase store /////////////
+  ///////////// Firebase store /////////////
+
+  // useEffect(() => {
+  //   const db = getFirestore();
+  //   const itemCollection = db.collection("items");
+
+  //   itemCollection.get().then((querySnapshot) => {
+  //     if (querySnapshot.size === 0) {
+  //       setItems([]);
+  //     } else {
+  //       setItems(querySnapshot.docs.map((doc) => doc.data));
+  //     }
+  //   });
+  // }, []);
+
+  ///////////// Firebase store /////////////
+  ///////////// Firebase store /////////////
 
   useEffect(() => {
     let apiPath;
@@ -40,9 +60,9 @@ const ItemListContainer = ({ greeting }) => {
     <div className="titleSpace">
       <div className="mainSection">
         <h2>Galeria de Productos</h2>
-        <p>{`Categoria ${greeting}`}</p>
+        <p>{`Categoria ${status ? status : "Todos"}`}</p>
+        {<ItemList items={items} />}
       </div>
-      <ItemList items={items} />
     </div>
   );
 };

@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 const ItemDetail = (props) => {
   const [showItemCount, setShowItemCount] = useState(true);
   const [itemCountCounter, setItemCountCounter] = useState(1);
+  console.log("showItemCount: " + showItemCount);
+  console.log("itemCountCounter: " + itemCountCounter);
 
   return (
     <div>
