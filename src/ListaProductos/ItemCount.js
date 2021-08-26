@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./ItemCount.css";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Plus, Dash } from "react-bootstrap-icons";
-import { useAdd } from "../components/Carrito/CartContext";
+import CartContext from "../components/Carrito/CartContext";
 
-const ItemCount = ({ initial, maxStock, setItemCounter, setShowCount }) => {
+const ItemCount = ({
+  initial,
+  maxStock,
+  setItemCounter,
+  setShowCount,
+  item,
+}) => {
   const [contador, setContador] = useState(initial);
   const [stock, setStock] = useState(maxStock);
+  const { addItem } = useContext(CartContext);
 
   //sumo 1 del stock.
   const addCounter = () => {
@@ -38,6 +45,7 @@ const ItemCount = ({ initial, maxStock, setItemCounter, setShowCount }) => {
     // setStock(newStock);s
     setItemCounter(contador);
     setShowCount(false);
+    addItem(item, contador);
   };
 
   return (

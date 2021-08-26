@@ -23,6 +23,7 @@ const ItemDetail = (props) => {
             setItemCounter={setItemCountCounter}
             maxStock={10}
             initial={1}
+            item={props.item}
           />
         )}
 

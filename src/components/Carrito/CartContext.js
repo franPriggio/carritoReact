@@ -1,64 +1,56 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
-const AddContext = React.createContext();
-const RemoveContext = React.createContext();
-const ClearContext = React.createContext();
-const IsInContext = React.createContext();
+const CartContext = React.createContext({});
 
-export function useAdd() {
-  return useContext(AddContext);
-}
+const CartProvider = ({ children }) => {
+  const [carrito, setCarrito] = useState([{ items: [] }]);
 
-export function useRemove() {
-  return useContext(RemoveContext);
-}
-
-export function useClear() {
-  return useContext(ClearContext);
-}
-
-export function useIsInCart() {
-  return useContext(IsInContext);
-}
-
-const CartContext = ({ children }) => {
-  const [darkTheme, setDarkTheme] = useState(true);
-
-  const addItem = () => {
-    console.log(darkTheme);
-    setDarkTheme(!darkTheme);
-    console.log(darkTheme);
+  const addItem = (item, quantity) => {
+    console.log(item);
+    let actualCarrito = [...carrito];
+    let exists = false;
+    actualCarrito.forEach((el) => {
+      if (el.id === item.id) {
+        if (isInCart(item.id)) {
+          exists = true;
+        }
+      }
+    });
+    if (exists) {
+      //remove existing
+      removeItem(item.id);
+    }
+    actualCarrito.items.push({ item: item, quantity: quantity });
+    setCarrito(actualCarrito);
+    console.log(setCarrito);
   };
 
-  const removeItem = () => {
-    console.log(darkTheme);
-    setDarkTheme(!darkTheme);
-    console.log(darkTheme);
+  const removeItem = (itemId) => {
+    let actualCarrito = [...carrito];
+    actualCarrito = actualCarrito.filter((item) => item.id !== itemId);
+    setCarrito(actualCarrito);
   };
 
   const clear = () => {
-    console.log(darkTheme);
-    setDarkTheme(!darkTheme);
-    console.log(darkTheme);
+    console.log("clear");
+    setCarrito([]);
   };
 
-  const isInCart = () => {
-    console.log(darkTheme);
-    setDarkTheme(!darkTheme);
-    console.log(darkTheme);
+  const isInCart = (itemId) => {
+    console.log("isinL : " + itemId);
+    let actualCarrito = [...carrito];
+    if (actualCarrito.filter((item) => item.id === itemId).length) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   return (
-    <AddContext.Provider value={addItem}>
-      <RemoveContext.Provider value={removeItem}>
-        <ClearContext.Provider value={clear}>
-          <IsInContext.Provider value={isInCart}>
-            {children}
-          </IsInContext.Provider>
-        </ClearContext.Provider>
-      </RemoveContext.Provider>
-    </AddContext.Provider>
+    <CartContext.Provider value={{ addItem, removeItem, clear, isInCart }}>
+      {children}
+    </CartContext.Provider>
   );
 };
 
-export default CartContext;
+export default CartProvider;
