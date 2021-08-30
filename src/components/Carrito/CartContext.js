@@ -1,28 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 
-const CartContext = React.createContext({});
+export const CartCntxt = createContext({});
 
-const CartProvider = ({ children }) => {
-  const [carrito, setCarrito] = useState([{ items: [] }]);
+export const CartProvider = ({ children }) => {
+  const [carrito, setCarrito] = useState([]);
 
   const addItem = (item, quantity) => {
     console.log(item);
     let actualCarrito = [...carrito];
-    let exists = false;
-    actualCarrito.forEach((el) => {
-      if (el.id === item.id) {
-        if (isInCart(item.id)) {
-          exists = true;
-        }
-      }
-    });
-    if (exists) {
-      //remove existing
-      removeItem(item.id);
-    }
-    actualCarrito.items.push({ item: item, quantity: quantity });
+    const i = actualCarrito.findIndex((_item) => _item.id === item.id);
+    i > -1 ? (actualCarrito[i] = item) : actualCarrito.push(item);
     setCarrito(actualCarrito);
-    console.log(setCarrito);
   };
 
   const removeItem = (itemId) => {
@@ -37,20 +25,12 @@ const CartProvider = ({ children }) => {
   };
 
   const isInCart = (itemId) => {
-    console.log("isinL : " + itemId);
-    let actualCarrito = [...carrito];
-    if (actualCarrito.filter((item) => item.id === itemId).length) {
-      return true;
-    } else {
-      return false;
-    }
+    return carrito.find((el) => el.id === itemId);
   };
 
   return (
-    <CartContext.Provider value={{ addItem, removeItem, clear, isInCart }}>
+    <CartCntxt.Provider value={{ addItem, removeItem, clear, isInCart }}>
       {children}
-    </CartContext.Provider>
+    </CartCntxt.Provider>
   );
 };
-
-export default CartProvider;

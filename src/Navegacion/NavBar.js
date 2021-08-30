@@ -34,7 +34,7 @@ const NavBar = () => {
           <NavBtn>
             <NavBtnLink to="/sign-up">Sign Up</NavBtnLink>
           </NavBtn>
-          <NavLink to="/signin" activeStyle>
+          <NavLink to="/cart" activeStyle>
             <CartWidget />
           </NavLink>
         </NavMenu>

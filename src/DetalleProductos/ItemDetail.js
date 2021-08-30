@@ -17,7 +17,7 @@ const ItemDetail = (props) => {
         <h3>{props.item.name}</h3>
         <p>${props.item.price}</p>
 
-        {showItemCount && (
+        {showItemCount ? (
           <ItemCount
             setShowCount={setShowItemCount}
             setItemCounter={setItemCountCounter}
@@ -25,9 +25,7 @@ const ItemDetail = (props) => {
             initial={1}
             item={props.item}
           />
-        )}
-
-        {!showItemCount && (
+        ) : (
           <>
             <p>
               Se han agregado{" "}
@@ -42,6 +40,22 @@ const ItemDetail = (props) => {
             </Link>
           </>
         )}
+
+        {/* {!showItemCount && (
+          <>
+            <p>
+              Se han agregado{" "}
+              <b>
+                {" "}
+                {itemCountCounter} {props.item.name}{" "}
+              </b>
+              al carrito
+            </p>{" "}
+            <Link to={"/cart"}>
+              <Button>Terminar mi compra</Button>
+            </Link>
+          </>
+        )} */}
       </div>
     </div>
   );
