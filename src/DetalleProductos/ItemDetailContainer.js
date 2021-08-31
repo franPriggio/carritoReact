@@ -52,7 +52,7 @@ const ItemDetailContainer = (props) => {
             <Modal.Title>{character.name}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <ItemDetail item={character} />
+            <ItemDetail item={character} closeModal={handleClose} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>

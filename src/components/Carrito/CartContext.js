@@ -20,7 +20,6 @@ export const CartProvider = ({ children }) => {
   };
 
   const clear = () => {
-    console.log("clear");
     setCarrito([]);
   };
 
@@ -28,8 +27,14 @@ export const CartProvider = ({ children }) => {
     return carrito.find((el) => el.id === itemId);
   };
 
+  const totalItems = () => {
+    return carrito.length;
+  };
+
   return (
-    <CartCntxt.Provider value={{ addItem, removeItem, clear, isInCart }}>
+    <CartCntxt.Provider
+      value={{ addItem, removeItem, clear, isInCart, carrito, totalItems }}
+    >
       {children}
     </CartCntxt.Provider>
   );

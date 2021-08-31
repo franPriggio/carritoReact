@@ -5,17 +5,16 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const ItemDetail = (props) => {
+  const { item, closeModal } = props;
   const [showItemCount, setShowItemCount] = useState(true);
   const [itemCountCounter, setItemCountCounter] = useState(1);
-  console.log("showItemCount: " + showItemCount);
-  console.log("itemCountCounter: " + itemCountCounter);
 
   return (
     <div>
       <div className="itemSpace">
-        <Image fluid src={props.item.image} className="prodStyle"></Image>
-        <h3>{props.item.name}</h3>
-        <p>${props.item.price}</p>
+        <Image fluid src={item.image} className="prodStyle"></Image>
+        <h3>{item.name}</h3>
+        <p>${item.price}</p>
 
         {showItemCount ? (
           <ItemCount
@@ -23,7 +22,7 @@ const ItemDetail = (props) => {
             setItemCounter={setItemCountCounter}
             maxStock={10}
             initial={1}
-            item={props.item}
+            item={item}
           />
         ) : (
           <>
@@ -31,31 +30,18 @@ const ItemDetail = (props) => {
               Se han agregado{" "}
               <b>
                 {" "}
-                {itemCountCounter} {props.item.name}{" "}
+                {itemCountCounter} {item.name}{" "}
               </b>
               al carrito
             </p>{" "}
             <Link to={"/cart"}>
-              <Button>Terminar mi compra</Button>
+              <Button>Ir a mi carrito</Button>
             </Link>
+            <Button className="mt-2" onClick={closeModal}>
+              Seguir comprando
+            </Button>
           </>
         )}
-
-        {/* {!showItemCount && (
-          <>
-            <p>
-              Se han agregado{" "}
-              <b>
-                {" "}
-                {itemCountCounter} {props.item.name}{" "}
-              </b>
-              al carrito
-            </p>{" "}
-            <Link to={"/cart"}>
-              <Button>Terminar mi compra</Button>
-            </Link>
-          </>
-        )} */}
       </div>
     </div>
   );

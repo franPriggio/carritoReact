@@ -40,7 +40,6 @@ const ItemCount = ({
 
   //resto del stock total al agregar al carrito
   const updStock = () => {
-    console.log("ejecuta upd stock");
     // const newStock = stock - contador;
     // setStock(newStock);
     setItemCounter(contador);
