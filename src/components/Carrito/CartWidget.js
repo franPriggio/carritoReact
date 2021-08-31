@@ -1,14 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./CartWidget.css";
-import { CartFill } from "react-bootstrap-icons";
+import { CartFill, Cart } from "react-bootstrap-icons";
 import { CartCntxt } from "./CartContext";
 
 const CartWidget = () => {
-  const { addItem } = useContext(CartCntxt);
+  const { totalItems, carrito } = useContext(CartCntxt);
+
+  useEffect(() => {
+    console.log("CARRITO VIEW", JSON.stringify(carrito));
+    console.log("totalItems: " + totalItems);
+  }, [carrito]);
 
   return (
     <div>
-      <CartFill className="cartStyle" />
+      {totalItems > 0 ? (
+        <div className="cartStyle">
+          <CartFill />
+          {totalItems}
+        </div>
+      ) : (
+        <Cart className="cartStyle" />
+      )}
     </div>
   );
 };
