@@ -46,6 +46,7 @@ const Carrito = () => {
                       Eliminar de carrito
                     </Button>
                   </Col>
+                  <Col>Subtotales</Col>
                 </Row>
               );
             })}
