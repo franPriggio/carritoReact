@@ -3,7 +3,8 @@ import "./ItemListContainer.css";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
 import { apiBaseUrl } from "../apis/apiDefinition";
-// import { getFirestore } from "../firebase";
+import { getFirestore } from "../Firestore/FirestoreConf";
+import { writeBatch, doc, setDoc } from "firebase/firestore";
 
 let basePath = `${apiBaseUrl}character`;
 
@@ -50,11 +51,39 @@ const ItemListContainer = () => {
           }));
         }
         setItems(charactersInfo);
+        //agrego items a FireStore
+        setCharactersInFirestore(charactersInfo);
       })
       .catch((error) => {
         setItems([]);
       });
   }, [status]);
+
+  const setCharactersInFirestore = async (ch) => {
+    try {
+      const db = getFirestore();
+      let char = ch[0];
+      console.log("ch0: " + JSON.stringify(ch[0]));
+      db.collection("personajes")
+        .doc("LA")
+        .set({
+          name: char.name,
+          image: char.image,
+          price: char.price,
+          id: char.id,
+        })
+        .then(() => {
+          console.log("Document successfully written!");
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
+      // const charCollection = await db.collection("personajes");
+      // const data = await charCollection.set(ch);
+    } catch (e) {
+      console.error("Error en firebase: " + e);
+    }
+  };
 
   return (
     <div className="titleSpace">
