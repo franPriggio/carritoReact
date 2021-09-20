@@ -13,10 +13,11 @@ export const CartProvider = ({ children }) => {
   }, [carrito]);
 
   const addItem = (item, quantity) => {
-    console.log(item);
     let actualCarrito = [...carrito];
     const i = actualCarrito.findIndex((_item) => _item.id === item.id);
-    item = { ...item, quantity: quantity };
+    let subTotal = item.price * quantity;
+    item = { ...item, quantity: quantity, subTotal: subTotal };
+    console.log("item added carrito: " + JSON.stringify(item));
     i > -1 ? (actualCarrito[i] = item) : actualCarrito.push(item);
     setCarrito(actualCarrito);
   };
@@ -42,7 +43,7 @@ export const CartProvider = ({ children }) => {
   const costoTotalCarrito = () => {
     let costoTotal = 0;
     carrito.forEach((item) => {
-      costoTotal += item.precio;
+      costoTotal += +item.subTotal;
     });
     setCostoTotal(costoTotal);
   };
