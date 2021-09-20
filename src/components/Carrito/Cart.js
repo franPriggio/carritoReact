@@ -10,7 +10,7 @@ const Carrito = () => {
   const { clear, carrito, removeItem, costoTotal, totalItems } =
     useContext(CartCntxt);
 
-  function makeid(length) {
+  const makeid = (length) => {
     var result = "";
     var characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -19,7 +19,11 @@ const Carrito = () => {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
-  }
+  };
+
+  const getRandomInt = () => {
+    return Math.random();
+  };
 
   const saveOrder = () => {
     const db = getFirestore();
@@ -28,8 +32,8 @@ const Carrito = () => {
     //generate order data
     let buyer = {
       name: `Buyer ${makeid(5)}`,
-      phone: "555-555-5555",
-      email: "test@mail.com",
+      phone: getRandomInt().toString(),
+      email: `te${makeid(5)}st@${makeid(5)}mail.com`,
     };
     let orderProducts = [];
     carrito.map((item) => {
