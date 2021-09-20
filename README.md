@@ -19,3 +19,10 @@ Luego para iniciar la aplicación debes abrir una terminal posicionado en la rut
 En este link podras ver una rapida navegacion a través de las diferentes funcionalidades de la aplicación:
 
 https://www.loom.com/share/5e3d28bc5eaa4fec9cbcd2413f198e95
+
+## Demo completa
+
+En este link se puede ver una navegacion completa a traves de la aplicacion, con el flujo de
+principio a fin de una compra:
+
+https://www.loom.com/share/f68456685cdc42e08fa328b0bfe7338f
